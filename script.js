@@ -1,9 +1,10 @@
-  var app = Sammy(function() {
+﻿  var app = Sammy(function() {
 //        this.get('#/add:id', function() {
 //         alert( this.params['id'])
 //         
 //         $("#main").append("fdfdf").fadeIn();
 //        });
+//buggy defualt
     this.get('#/index.html', function() {
        this.redirect('#/read');
         });
@@ -28,8 +29,9 @@
        
       })
            //putting in ready function make problems :)   
-      jQuery(function() {
+      $(function() {
         app.run("#/read");
+//window.location="#/read"
       });
 
 
