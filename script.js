@@ -1,4 +1,35 @@
-﻿  var app = Sammy(function() {
+
+//$(window).on('hashchange', function() {
+// console.log("changed to "+window.location.hash)
+////debugger;
+////switch(window.location.hash)
+////{
+////
+////case '#/add':
+////         $('.view').hide();
+////         $(".add").fadeIn();
+////        break;
+////        
+////case '#/read':
+////           scope.load();
+////         $('.view').hide();
+////         $(".read").fadeIn();
+////        break;
+////        
+////default:
+////        window.location.hash="#/read";
+////     
+////}
+//    });
+
+
+//location.hash="#/read";
+//bug in sammy 
+$('a').click(function(){
+
+window.location=$(this).attr('href');
+})  
+var app = Sammy(function() {
 //        this.get('#/add:id', function() {
 //         alert( this.params['id'])
 //         
@@ -61,7 +92,20 @@
 
 var scope;
 var http;
+var loc;
 function wwe($scope,$http,$location){
+    
+    loc=$location;
+    
+    
+//    $scope.$watch('$location.path()',function(){
+//    console.log($location.path())
+//    })
+//    $(window).on('hashchange', function() {
+//    
+//    $location.path("#/4");
+//    })
+    
     http=$http
     scope=$scope;
     $scope.one={};
