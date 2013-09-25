@@ -4,6 +4,9 @@
 //         
 //         $("#main").append("fdfdf").fadeIn();
 //        });
+       this.get('#/index.html', function() {
+        this.redirect('#/read');
+        });
         this.get('#/add', function() {
         $('.view').hide();
          $(".add").fadeIn();
