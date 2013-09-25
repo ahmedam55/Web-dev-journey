@@ -1,8 +1,14 @@
-<html>
+<html ng-app>
    <head>
       <title>WWE</title>
       <link href="skeleton.css" rel="stylesheet"/>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="jquery.js"></script>
+       <script src="angularjs.js"></script>      
+       <script src="sammy.js"></script>
+       <script src="unevil.js"></script>
+        <script src="script.js"></script>
+     
+       
       <style>.container
           {margin-top: 50px;}
           #nav
@@ -14,7 +20,12 @@
           #nav a:hover
           {text-decoration: underline;}
           #headerImage img
-          { border-style:dotted;margin-bottom: 50px;max-width: 100%;height: auto;}
+          { border-style:dotted;margin-bottom: -14px;max-width: 100%;height: auto;
+          
+    width: 203;
+    height: 234;
+
+          }
           .feature img {
     margin-bottom: 15px;
     max-width: 100%;
@@ -22,24 +33,60 @@
 }
        </style>
    </head>
-   <body>
+   <body ng-controller="wwe">
       <div class="container">
          <div class="two columns">
             <h1>DS</h1>
+                <div class="read view ">search  <input ng-model="query" /></div>
          </div>
          <div id="nav" class="fourteen columns">
             <ul>
-               <li><a href="#">Home</a></li>
-               <li><a href="#">About</a></li>
+               <li><a href="#/read">News</a></li>
+               <li><a href="#/add">Add new</a></li>
+<!--
                <li><a href="#">Portfolio</a></li>
                <li><a href="#">Contact</a></li>
+-->
             </ul>
          </div>
-         <div id="headerImage" class="offset-by-two sixteen columns"><img src="" fakeSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjKo8x5W_PunrFkhNjMXDag8ieOFIL9OFnsVQXi3j912EOfTiyqQ"><img src="" fakeSrc="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSblZd7AIkZ9UeLXydkjVSABe7kAiiDejGEksC3QLpJmpPxYHpNPQ" ><img src="" fakeSrc="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSE4gIsn-VwlsYiF4MSftGw7I6q_F-TjG_C3zlKY9G4YbCQfr4F"><img src="" fakeSrc="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQYB0feNBheAW49Q7wx3Sv1-i3M0oFt4KrOy0aC6YPEwYelB2-Kow"><img src="" fakeSrc="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRjcpBaMHPgwGwakb5XTjCWXUWrY-cFtBRYvIA9crevFUOiZ0q4"></div>
+          
+          <div  class="offset-by-five view add " >
+          <form name="f" >
+              <div class="three columns">
+             Title <input  name="title" ng-model="one.title" required>
+              <br>
+              Body <textarea name="body" ng-model="one.body" required ng-minlength="10" ng-maxlength="300"></textarea>
+              <br>
+              image URL <input name="img" type="url" ng-model="one.img" required>
+              <input type="submit" value="add" ng-click="add(one)" ng-disabled="!f.$valid||disabled">
+                   </div>
+             </form>
+             
+          </div>
+         <div  class="offset-by-two sixteen columns view read">
+            
+             <div id="headerImage" ng-repeat="champ in news|filter:query" class="four columns">
+             <img src="http://luis-almeida.github.io/unveil/img/loader.gif"  data-src="{{champ.img}}">
+             <h3>{{champ.title}}</h3><p>{{champ.body}}</p>
+                 <button ng-click="viewEdit(champ);">Edit</button>
+             <button ng-hide="confirm" ng-click="confirm=true">Delete</button>
+                 <div ng-show="confirm">
+             <span>Are you sure?</span>
+                 <button ng-click="confirm=false" >No</button>
+                 <button  ng-click="delete(champ,$index)" ng-disabled="delDisabled">Yes</button>
+                 </div>
+             
+             
+             
+             </div>
+           
+             
+            
+          </div>
           
           
-          <hr>
-           <div id="headerImage2" class="offset-by-two sixteen columns"><img src="" fakeSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjKo8x5W_PunrFkhNjMXDag8ieOFIL9OFnsVQXi3j912EOfTiyqQ"><img src="" fakeSrc="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSblZd7AIkZ9UeLXydkjVSABe7kAiiDejGEksC3QLpJmpPxYHpNPQ" ><img src="" fakeSrc="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSE4gIsn-VwlsYiF4MSftGw7I6q_F-TjG_C3zlKY9G4YbCQfr4F"><img src="" fakeSrc="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQYB0feNBheAW49Q7wx3Sv1-i3M0oFt4KrOy0aC6YPEwYelB2-Kow"><img src="" fakeSrc="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRjcpBaMHPgwGwakb5XTjCWXUWrY-cFtBRYvIA9crevFUOiZ0q4"></div>
+          
+         
          <div id="welcome" class="sixteen columns">
             <h1>Built with Skeleton</h1>
             <p>This page was built for Design Shack using Skeleton, an awesome framework for building responsive web pages...</p>
@@ -65,30 +112,24 @@
         <p>Lorem ipsum dolor sit amet...</p>
     </div>
           <script>
-        $('img').show();
-          $('img').each(function(){
-              setTimeout(function(){
-              // console.log($(this))
-          //$(this).attr('src',)   
-              
-              },3000);      
-          })
-         //  $('#headerImage img').each(function(){ var src=$(this).attr('fakeSrc');$(this).attr('src',src)})
-//            $('#headerImage img').click(function(){ var src=$(this).attr('fakeSrc');$(this).attr('src',src)})
-//            function inc(i){var i=i||0;setTimeout(function(){console.log(i);inc(++i)},1000)}
+            
+//        $('img').show();
+//          $('img').each(function(){
+//              setTimeout(function(){
+//              // console.log($(this))
+//          //$(this).attr('src',)   
+//              
+//              },3000);      
+//          })
+//         //  $('#headerImage img').each(function(){ var src=$(this).attr('src');$(this).attr('src',src)})
+////            $('#headerImage img').click(function(){ var src=$(this).attr('src');$(this).attr('src',src)})
+////            function inc(i){var i=i||0;setTimeout(function(){console.log(i);inc(++i)},1000)}
           //allah Akbar lazy loading pictures
-          function inc(selector,i){var i=i||0;console.log(i);
-
-$(selector+" img").eq(i).attr('src',$(selector+" img").eq(i).attr('fakeSrc'));
-
-if(i<$(selector+" img").length){
-
-    $(selector+" img").eq(i).on("load",function(){inc(selector,++i);})
-    ;}
-                                                          }
+        
               
               //inc("#headerImage2");
           </script>
+<!--   get       https://api.mongolab.com/api/1/databases/wwe/collections/wwedata?apiKey=b79etr8Qn0rxFEcZVcsIGRywaX0j0b44-->
       </div>
    </body>
 </html>
