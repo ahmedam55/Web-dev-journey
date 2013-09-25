@@ -4,8 +4,8 @@
 //         
 //         $("#main").append("fdfdf").fadeIn();
 //        });
-       this.get('#/index.html', function() {
-        this.redirect('#/read');
+    this.get('#/index.html', function() {
+       this.redirect('#/read');
         });
         this.get('#/add', function() {
         $('.view').hide();
@@ -27,7 +27,7 @@
         });
        
       })
-              
+           //putting in ready function make problems :)   
       jQuery(function() {
         app.run("#/read");
       });
