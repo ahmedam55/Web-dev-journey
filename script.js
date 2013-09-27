@@ -1,4 +1,4 @@
-
+﻿
 //$(window).on('hashchange', function() {
 // console.log("changed to "+window.location.hash)
 ////debugger;
@@ -25,10 +25,13 @@
 
 //location.hash="#/read";
 //bug in sammy 
-$('a').click(function(){
-
+$(function(){
+$('a').on('click',function(){
+console.log(window.location)
 window.location=$(this).attr('href');
-})  
+
+}) 
+}) 
 var app = Sammy(function() {
 //        this.get('#/add:id', function() {
 //         alert( this.params['id'])
