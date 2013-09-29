@@ -3,12 +3,14 @@
       <title>WWE</title>
       <link href="skeleton.css" rel="stylesheet"/>
        <script src="BigBund.js"></script>
+<link href="C:\Users\ahmed\Desktop\Web dev journey\bootstrap\css\bootstrap.css" rel="stylesheet">
 <!--
       <script src="jquery.js"></script>
        <script src="angularjs.js"></script>      
        <script src="sammy.js"></script>
        <script src="unevil.js"></script>
         <script src="script.js"></script>
+
 -->
      
        
@@ -69,7 +71,7 @@
          <div  class="offset-by-two fourteen columns view read">
             
              <div id="headerImage" ng-repeat="champ in news|filter:query" class="four columns">
-             <img src="http://luis-almeida.github.io/unveil/img/loader.gif"  data-src="{{champ.img}}">
+             <img src="http://luis-almeida.github.io/unveil/img/loader.gif" class="img-polaroid"  data-src="{{champ.img}}">
              <h3>{{champ.title}}</h3><p>{{champ.body}}</p>
                  <button ng-click="viewEdit(champ);">Edit</button>
              <button ng-hide="confirm" ng-click="confirm=true">Delete</button>
