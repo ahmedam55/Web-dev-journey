@@ -1,0 +1,38 @@
+<html ng-app>
+    <head>
+    <script src="/angularjs.js"></script>
+        <script src="/jquery.js"></script>
+        <script src="/sammy.js"></script>
+        <link href="/bootstrap.min.css" rel="stylesheet"/>
+        <script src="/entity.js"> </script>
+    </head>
+    
+    <body ng-controller="entity" >
+        <div class="read">
+        
+        <table>
+            <tr >
+                <!-- repeat on server on all props-->
+                <th >propName1</th>
+                 <th>propName2</th>
+                 <th>propName3</th>
+                 <th>propName4</th>
+                 <th>propName5</th>
+                <th><button ng-click="read()" class='btn btn-primary' style=" margin-left:3px;padding:0 6">+ new</button></th>
+            
+            </tr>
+          <tr ng-repeat="row in entityData">
+              
+              <td>{{row.propName1}}</td>
+            
+            
+            </tr>
+            </table>
+        </div>
+     <div  class="create">
+        
+        
+        
+        </div>        
+    </body>
+</html>
